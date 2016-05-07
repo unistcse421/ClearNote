@@ -1,3 +1,6 @@
+require('angular');
+require('angular-ui-router');
+
 var app = angular.module('cleannote', ['ui.router']);
 
 app.config([
@@ -7,7 +10,7 @@ app.config([
 	$stateProvider
 	.state('home', {
 	    url: '/home?sectionId',
-	    templateUrl: '/home.html',
+	    templateUrl: './partials/home.html',
 	    controller: 'MainCtrl',
 	    resolve: {
 		sectionPromise : ['sections', '$stateParams', function(sections, $stateParams) {
@@ -23,7 +26,7 @@ app.config([
 	})
 	.state('cards', {
 	    url: '/cards/{id}',
-	    templateUrl: '/cards.html',
+	    templateUrl: './partials/cards.html',
 	    controller: 'CardsCtrl',
 	    resolve: {
 		card: ['$stateParams', 'cards', function($stateParams, cards) {
@@ -33,7 +36,7 @@ app.config([
 	})
 	.state('login', {
 	    url: '/login',
-	    templateUrl: '/login.html',
+	    templateUrl: './partials/login.html',
 	    controller: 'AuthCtrl',
 	    onEnter: ['$state', 'auth', function($state, auth) {
 		if (auth.isLoggedIn()) {
@@ -43,7 +46,7 @@ app.config([
 	})
 	.state('register', {
 	    url: '/register',
-	    templateUrl: '/register.html',
+	    templateUrl: './partials/register.html',
 	    controller: 'AuthCtrl',
 	    onEnter: ['$state', 'auth', function($state, auth) {
 		if (auth.isLoggedIn()) {
@@ -53,7 +56,7 @@ app.config([
 	})
 	.state('sections', {
 	    url: '/sections/{id}',
-	    templateUrl: '/sections.html',
+	    templateUrl: './partials/sections.html',
 	    controller: 'SectionCtrl',
 	    resolve: {
 	    	section: ['$stateParams', 'sections', function($stateParams, sections) {

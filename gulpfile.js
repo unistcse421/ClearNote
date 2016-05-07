@@ -12,6 +12,8 @@ var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
+var browserify = require('gulp-browserify');
+var concat = require('gulp-concat');
 
 gulp.task('lint', function() {
   gulp.src(['./server/**/*.js', './client/**/*.js', '!./client/bower_components/**'])
@@ -22,6 +24,8 @@ gulp.task('lint', function() {
 
 gulp.task('clean', function() {
     gulp.src('./dist/*')
+      .pipe(clean({force: true}));
+    gulp.src('./client/js/bundled.js')
       .pipe(clean({force: true}));
 });
 
@@ -78,6 +82,16 @@ gulp.task('nodemon', ['browser-sync'], function(cb) {
     });
 });
 
+gulp.task('browserify', function() {
+  gulp.src(['client/js/app.js'])
+  .pipe(browserify({
+    insertGlobals: true,
+    debug: true
+  }))
+  .pipe(concat('bundled.js'))
+  .pipe(gulp.dest('./client/js'))
+});
+
 gulp.task('connect', ['nodemon'], function(cb) {
 
 });
@@ -86,13 +100,17 @@ gulp.task('connectDist', ['nodemon'], function(cb) {
 
 });
 
-gulp.task('default',
-  ['lint', 'connect']
-);
+gulp.task('default', function() {
+    runSequence(['clean'],
+		['lint', 'browserify'],
+		['connect']);
+
+});
 
 gulp.task('build', function() {
   runSequence(
-    ['clean'],
-    ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components', 'connectDist']
+      ['clean'],
+      ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components'],
+      ['connectDist']
   );
 });

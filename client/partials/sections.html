@@ -1,0 +1,17 @@
+<!-- <script type="text/ng-template" id="/sections.html"> -->
+<div class="page-header">
+  <h1>{{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h1>
+  <h2>- Students -</h2>
+  <div ng-repeat="student in manager.students">
+    {{ student.user_id }} {{ student.username }}
+  </div>
+  <h2>- Instructors -</h2>
+  <div ng-repeat="instructor in manager.instructors">
+    {{ instructor.user_id }} {{ instructor.username }}
+  </div>
+  <h2>- Managers -</h2>
+  <div ng-repeat="manager in section.managers">
+    {{ manager.user_id }} {{ manager.username }}
+  </div>
+</div>
+<!-- </script> -->
