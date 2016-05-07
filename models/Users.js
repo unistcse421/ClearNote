@@ -6,7 +6,10 @@ var UserSchema = new mongoose.Schema({
     user_id: {type:String, lowercase: true, unique: true},
     username: String,
     hash: String,
-    salt: String
+    salt: String,
+    takes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Section'}],
+    teaches: [{type: mongoose.Schema.Types.ObjectId, ref: 'Section'}],
+    manages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Section'}]
 });
 
 UserSchema.methods.setPassword = function(password) {

@@ -28,8 +28,9 @@
       </div>
       <h2>- Sections -</h2>
       <div ng-repeat="section in sections">
-	<span ng-show="section.selected">V</span>
+	<span ng-show="section.selected" class="glyphicon glyphicon-ok"></span>
 	<a href="#/home?sectionId={{section._id}}">{{section.course_id}}{{section.section_id}} -  {{section.course_name}}</a>
+	<a href="#/sections/{{section._id}}" ng-show="section.manage_authorized" class="glyphicon glyphicon-pencil"></a>
       </div>
       <form ng-submit="addSection()" style="margin-top:30px;">
 	<h3>Add a new Section</h3>
@@ -161,6 +162,23 @@
 	</div>
 	<button type="submit" class="btn btn-primary">Log In</button>
       </form>
+    </script>
+    <script type="text/ng-template" id="/sections.html">
+      <div class="page-header">
+	<h1>{{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h1>
+	<h2>- Students -</h2>
+	<div ng-repeat="student in manager.students">
+	  {{ student.user_id }} {{ student.username }}
+	</div>
+	<h2>- Instructors -</h2>
+	<div ng-repeat="instructor in manager.instructors">
+	  {{ instructor.user_id }} {{ instructor.username }}
+	</div>
+	<h2>- Managers -</h2>
+	<div ng-repeat="manager in section.managers">
+	  {{ manager.user_id }} {{ manager.username }}
+	</div>
+      </div>
     </script>
   </body>
 </html>

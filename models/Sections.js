@@ -6,7 +6,10 @@ var SectionSchema = new mongoose.Schema({
     semester: String,
     year: Number,
     course_name: String,
-    cards: [{type: mongoose.Schema.Types.ObjectId, ref: 'Card'}]
+    cards: [{type: mongoose.Schema.Types.ObjectId, ref: 'Card'}],
+    students: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    instructors: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    managers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
     // instructors: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 

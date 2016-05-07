@@ -50,6 +50,16 @@ app.config([
 		    $state.go('home');
 		}
 	    }]
+	})
+	.state('sections', {
+	    url: '/sections/{id}',
+	    templateUrl: '/sections.html',
+	    controller: 'SectionCtrl',
+	    resolve: {
+	    	section: ['$stateParams', 'sections', function($stateParams, sections) {
+	    	    return sections.get($stateParams.id);
+	    	}]
+	    }
 	});
 	$urlRouterProvider.otherwise('home');
     }
@@ -100,7 +110,10 @@ app.factory('sections', ['$http', 'auth', function($http, auth) {
 	sections: []
     };
     o.getAll = function(sectionId) {
-	return $http.get('/sections').success(function(data) {
+	return $http.get('/sections', {
+	    headers: {Authorization: 'Bearer ' + auth.getToken()}
+	}).success(function(data) {
+	    console.log(data);
 	    angular.copy(data, o.sections);
 	    o.sections.forEach(function (section, index) {
 		if (section._id === sectionId) {
@@ -116,6 +129,12 @@ app.factory('sections', ['$http', 'auth', function($http, auth) {
 	    headers: {Authorization: 'Bearer ' + auth.getToken()}
 	}).success(function(data) {
 	    o.sections.push(data);
+	});
+    };
+    o.get = function(id) {
+	return $http.get('/sections/' + id).then(function(res) {
+	    console.log(res.data);
+	    return res.data;
 	});
     };
     return o;
@@ -285,5 +304,14 @@ app.controller('NavCtrl', [
 	$scope.isLoggedIn = auth.isLoggedIn;
 	$scope.currentUser = auth.currentUser;
 	$scope.logOut = auth.logOut;
+    }
+]);
+
+app.controller('SectionCtrl', [
+    '$scope',
+    'sections',
+    'section',
+    function($scope, sections, section) {
+	$scope.section = section;
     }
 ]);

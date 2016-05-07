@@ -16,18 +16,41 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/sections', function(req, res, next) {
+router.get('/sections', auth, function(req, res, next) {
     Section.find(function(err, sections) {
 	if (err) {return next(err);}
+	sections = sections.map(function (section) {
+	    return section.toObject();
+	});
+	for (var j=0; j < sections.length; ++j) {
+	    var section = sections[j];
+	    section.manage_authorized = false;
+	    for (var i=0; i < section.managers.length; ++i) {
+		var managerId = section.managers[i];
+		if (managerId == req.payload._id) {
+		    section.manage_authorized = true;
+		    break;
+		}
+	    }
+	}
+	// });
 	res.json(sections);
     });
 });
 
 router.post('/sections', auth, function(req, res, next) {
     var section = new Section(req.body);
-    section.save(function(err, post) {
-	if (err) {return next(err);}
-	res.json(section);
+    var query = User.findById(req.payload._id);
+    query.exec(function(err, manager) {
+	section.managers.push(manager);
+	section.save(function(err, post) {
+	    if (err) {return next(err);}
+	    manager.manages.push(section);
+	    manager.save(function(err, manager) {
+		if (err) { return next(err); }
+		res.json(section);
+	    });
+	});
     });
 });
 
@@ -42,10 +65,11 @@ router.param('section', function(req, res, next, id) {
 });
 
 router.get('/sections/:section', function(req, res) {
-    req.section.populate('cards', function(err, section) {
-	if (err) { return next(err); }
-	res.json(section);
-    });
+    req.section
+	.populate('cards students instructors managers', function(err, section) {
+	    if (err) { return next(err); }
+	    res.json(section);
+	});
 });
 
 router.get('/cards', function(req, res, next) {
@@ -186,6 +210,5 @@ router.post('/login', function(req, res, next) {
 	}
     })(req, res, next);
 });
-
 
 module.exports = router;
