@@ -1,0 +1,22 @@
+{
+  "name": "cleannote",
+  "description": "",
+  "main": "",
+  "authors": [
+    "이종윤 <jongyun.lee94@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/unistcse421/ClearNote",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "angular-ui-router": "^0.2.18"
+  }
+}
