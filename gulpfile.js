@@ -12,8 +12,11 @@ var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
-var browserify = require('gulp-browserify');
 var concat = require('gulp-concat');
+var inject = require('gulp-inject');
+var bowerFiles = require('main-bower-files');
+var stylus = require('gulp-stylus');
+var es = require('event-stream');
 
 gulp.task('lint', function() {
   gulp.src(['./server/**/*.js', './client/**/*.js', '!./client/bower_components/**'])
@@ -82,14 +85,18 @@ gulp.task('nodemon', ['browser-sync'], function(cb) {
     });
 });
 
-gulp.task('browserify', function() {
-  gulp.src(['client/js/app.js'])
-  .pipe(browserify({
-    insertGlobals: true,
-    debug: true
-  }))
-  .pipe(concat('bundled.js'))
-  .pipe(gulp.dest('./client/js'))
+gulp.task('inject', function() {
+    var cssFiles = gulp.src('./client/**/*.css')
+	.pipe(stylus())
+	.pipe(gulp.dest('./client'));
+
+    gulp.src('./client/index.html')
+	.pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower', ignorePath: 'client/', addRootSlash: false}))
+	.pipe(inject(es.merge(
+	    cssFiles,
+	    gulp.src('./client/js/**/*.js', {read: false})
+	), {ignorePath: 'client/', addRootSlash: false}))
+	.pipe(gulp.dest('./client'));
 });
 
 gulp.task('connect', ['nodemon'], function(cb) {
@@ -102,15 +109,15 @@ gulp.task('connectDist', ['nodemon'], function(cb) {
 
 gulp.task('default', function() {
     runSequence(['clean'],
-		['lint', 'browserify'],
+		['lint', 'inject'],
 		['connect']);
 
 });
 
-gulp.task('build', function() {
-  runSequence(
-      ['clean'],
-      ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components'],
-      ['connectDist']
-  );
-});
+// gulp.task('build', function() {
+//   runSequence(
+//       ['clean'],
+//       ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components'],
+//       ['connectDist']
+//   );
+// });

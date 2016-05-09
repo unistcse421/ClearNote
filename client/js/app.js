@@ -1,6 +1,3 @@
-require('angular');
-require('angular-ui-router');
-
 var app = angular.module('cleannote', ['ui.router']);
 
 app.config([
