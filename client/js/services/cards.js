@@ -6,11 +6,15 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
     o.getAll = function(sectionId) {
 	o.sectionId = sectionId;
 	if (!sectionId || sectionId === '') {
-	    return $http.get('/cards').success(function(data) {
+	    return $http.get('/cards', {
+		headers: {Authorization: 'Bearer ' + auth.getToken()}
+	    }).success(function(data) {
 		angular.copy(data, o.cards);
 	    });
 	}
-	return $http.get('/sections/' + sectionId + '/cards').success(function(data) {
+	return $http.get('/sections/' + sectionId + '/cards', null, {
+	    headers: {Authorization: 'Bearer ' + auth.getToken()}
+	}).success(function(data) {
 	    angular.copy(data, o.cards);
 	});
     };

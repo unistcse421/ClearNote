@@ -30,5 +30,23 @@ angular.module('cleannote').factory('sections', ['$http', 'auth', function($http
 	    return res.data;
 	});
     };
+    o.addStudents = function(section_id, student_ids) {
+	return $http.post('/sections/' + section_id + '/students', student_ids);
+    };
+    o.removeStudent = function(section_id, id) {
+	return $http.get('/sections/' + section_id + '/students/' + id + '/remove');
+    };
+    o.addInstructors = function(section_id, instructor_ids) {
+	return $http.post('/sections/' + section_id + '/instructors', instructor_ids);
+    };
+    o.removeInstructor = function(section_id, id) {
+	return $http.get('/sections/' + section_id + '/instructors/' + id + '/remove');
+    };
+    o.addManagers = function(section_id, manager_ids) {
+	return $http.post('/sections/' + section_id + '/managers', manager_ids);
+    };
+    o.removeManager = function(section_id, id) {
+	return $http.get('/sections/' + section_id + '/managers/' + id + '/remove');
+    };
     return o;
 }]);

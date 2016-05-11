@@ -1,3 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.modal-body .select-list {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}

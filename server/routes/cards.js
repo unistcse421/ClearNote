@@ -11,20 +11,21 @@ var Todo = mongoose.model('Todo');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
-router.get('/', function(req, res, next) {
-    Card.find(function(err, cards) {
+router.get('/', auth, function(req, res, next) {
+    var query = User.findById(req.payload._id);
+    query.exec(function(err, user) {
 	if (err) {return next(err);}
-	res.json(cards);
+	Card.find({$or:[{'section': {'$in' : user.takes}}, {'section': {'$in' : user.teaches}}, {'section': {'$in' : user.manages}}]}).exec(function(err, cards) {
+	    if (err) {return next(err);}
+	    console.log('cards : ' + cards);
+	    res.json(cards);
+	});
     });
+    // Card.find(function(err, cards) {
+    // 	if (err) {return next(err);}
+    // 	res.json(cards);
+    // });
 });
-
-// router.post('/cards', function(req, res, next) {
-//     var card = new Card(req.body);
-//     card.save(function(err, post) {
-// 	if (err) {return next(err);}
-// 	res.json(card);
-//     });
-// });
 
 router.post('/:card/comments', auth, function(req, res, next) {
     var comment = new Comment(req.body);
