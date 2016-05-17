@@ -1,11 +1,9 @@
 <!-- <script type="text/ng-template" id="/cards.html"> -->
-<div class="row">
-<div class="col-md-8">
 <div class="page-header">
-    <h3 style="margin-top:80px;">
-     {{card.title}}
-    </h3>
-    <p style="font-size:20px; padding=5px;">{{card.content}}</p>
+  <h3>
+    {{card.title}}
+  </h3>
+  <p style="font-size:20px; padding=5px;">{{card.content}}</p>
 </div>
 
 <div ng-repeat="comment in card.comments">
@@ -22,6 +20,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Post</button>
 </form>
-</div>
-</div>
 <!-- </script> -->

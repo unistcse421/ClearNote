@@ -1,15 +1,11 @@
 <!-- <script type="text/ng-template" id="/login.html"> -->
-<div class="row">
-<div class="col-md-4">
 <div class="page-header">
-  <h1 style="margin-top:200px;">CleanNote</h1>
+  <h1>CleanNote</h1>
 </div>
 <div ng-show="error" class="alert alert-danger row">
   <span>{{ error.message }}</span>
 </div>
-</div>
-<div class="col-md-4">
-<form ng-submit="logIn()" style="margin-top:200px;">
+<form ng-submit="logIn()" style="margin-top:30px;">
   <h3>Log In</h3>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="User ID" ng-model="user.user_id"></input>
@@ -19,6 +15,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Log In</button>
 </form>
-</div>
-</div>
 <!-- </script> -->
