@@ -15,19 +15,24 @@
     <!-- endinject -->
     <style> .glyphicon-thumbs-up { cursor:pointer } </style>
   </head>
-  <body ng-app="cleannote" ng-controller="MainCtrl">
+  <body ng-app="cleannote" ng-controller="MainCtrl" >
 
-    <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
-      <ul class="nav navbar-nav">
+    <nav class="nav navbar-fixed-top" ng-controller="NavCtrl">
+    <div>
+     <div class="navbar-header">
+      <a class="navbar-brand" href="#">CleanNote</a>
+     </div>
+      <ul class="nav navbar-nav pull-right">
 	<li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
 	<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
 	<li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
 	<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
       </ul>
+    </div>
     </nav>
 
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-9 col-md-offset-3">
 	<ui-view></ui-view>
       </div>
     </div>

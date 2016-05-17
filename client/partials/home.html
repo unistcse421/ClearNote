@@ -1,6 +1,8 @@
 <!-- <script type="text/ng-template" id="/home.html"> -->
+<div class="row">
+<div class="col-md-9">
 <div class="page-header">
-  <h1>CleanNote</h1>
+  <h1 style="margin-top:60px;">WelCome</h1>
 </div>
 <h2>- Sections -</h2>
 <div ng-repeat="section in sections">
@@ -30,12 +32,18 @@
 <hr>
 <h2> - Cards - </h2>
 <div ng-repeat="card in cards" style="margin-top:20px;">
-  <h3>
-    {{card.title}}
-  </h3>
-  <p>
+  <div class = "panel panel-info">
+   <div class = "panel-heading">
+    <h3>
+     {{card.title}}
+    </h3>
+   </div>
+   <div class = "panel-body">
+   <p>
     {{card.content}}
-  </p>
+   </p>
+  </div>
+ </div>
   <span>
     <a href="#/cards/{{card._id}}">Comments</a>
   </span>
@@ -60,6 +68,9 @@
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
 <hr>
+</div>
+<div class="col-md-3">
+<div class="alert alert-info" style = "top: 100px; position: fixed;">
 <h2>- Todo -</h2>
 <div ng-repeat="todo in todos | orderBy:'done'" style="margin-top:20px;">
   <h4>
@@ -75,4 +86,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
+</div>
+</div>
+</div>
 <!-- </script> -->
