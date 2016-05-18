@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 
+//function MyCtrl($scope){
+//    $scope.$watch('dy_color', function(val){
+//        console.log('val '+ val);
+//    });
+//}
 var CardSchema = new mongoose.Schema({
-    card_type: {type: String, default: 0},
+    card_type: {type: String, default: 'announcement'},
     title: String,
     content: String,
     pub_date: { type:Date, default: Date.now },

@@ -1,13 +1,12 @@
 <!-- <script type="text/ng-template" id="/cards.html"> -->
 <div class="page-header">
-  <h3>
-    {{card.title}}
-  </h3>
+  <p style="">{{card.card_type}}</p>
+  <p style="">{{card.title}}</p>
   <p style="font-size:20px; padding=5px;">{{card.content}}</p>
 </div>
 
 <div ng-repeat="comment in card.comments">
-  <span style="font-size:20px; margin-left:10px;">{{comment.body}}</spsan> - {{comment.author}}
+  <span style="font-size:20px; margin-left:10px; color:red">{{comment.body}}</spsan> - {{comment.author}}
 </div>
 <form ng-submit="addComment()"
       style="margin-top:30px;">

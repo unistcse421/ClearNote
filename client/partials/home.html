@@ -2,17 +2,25 @@
 <div class="page-header">
   <h1>CleanNote</h1>
 </div>
-<h2>- Sections -</h2>
-<a href="#/home">All</a>
-<div ng-repeat="section in sections">
-  <span ng-show="section.selected" class="glyphicon glyphicon-ok"></span>
-  <a href="#/home?sectionId={{section._id}}">{{section.course_id}}{{section.section_id}} -  {{section.course_name}}</a>
-  <a href="#/sections/{{section._id}}" ng-show="section.manage_authorized" class="glyphicon glyphicon-pencil"></a>
-</div>
-<form ng-submit="addSection()" style="margin-top:30px;">
-  <h3>Add a new Section</h3>
+
+<!-- SHOWING SECTIONS ADDED -->
+<h2>- Sections -<h2>
+  <a href="#/home"style="font-size:20px; color:green">All</a>
+  <div ng-repeat="section in sections">
+    <span ng-show="section.selected" class="glyphicon glyphicon-ok"></span>
+    <a href="#/home?sectionId={{section._id}}" style="font-size:20px; color:green">
+      {{section.course_id}}{{section.section_id}} -  {{section.course_name}}
+    </a>
+    <a href="#/sections/{{section._id}}" ng-show="section.manage_authorized" class="glyphicon glyphicon-pencil" 
+       style="font-size:15px; color:green"></a>
+  </div>
+</h2>
+
+<!-- ADDING SECTIONS PARTS -->
+<form ng-submit="addSection()" style="margin-top:30px; border-radius:15px; border:2px solid #B6FFE0; padding:20px;" ng-model="dy_color">
+  <h3  >Add a new Section</h3>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Course Id" ng-model="course_id"></input>
+    <input type="text" class="form-control" placeholder="Course Id" ng-model="course_id" ></input>
   </div>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Section Id" ng-model="section_id"></input>
@@ -28,24 +36,29 @@
   </div>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
+
+<!-- SHOWING CARDS INFORMATIONS -->
 <hr>
-<h2> - Cards - </h2>
-<div ng-repeat="card in cards" style="margin-top:20px;">
-  <h3>
+<h2> - Cards - <h2>
+  <div ng-repeat="card in cards"  
+    style="font-size:20px margin-top:30px; border-radius:15px; border:2px solid #B6FFE0; padding:20px;">
+    <div style="text-align:right; font-size:20px;">{{card.card_type}}</div>
     {{card.title}}
-  </h3>
-  <p>
-    {{card.content}}
-    <span>
-      | <a href="#/cards/{{card._id}}"> more > </a>
-    </span>
-  </p>
-</div>
-<form ng-submit="addCards()" style="margin-top:30px;">
+    <hr> 
+    <p style="font-size:17px">
+      {{card.content}}
+      <span>
+         <a href="#/cards/{{card._id}}" style="font-size:14px">    ...  more > </a>
+      </span>
+    </p>
+  </div>
+</h2>
+<!-- ADDING CARDS PARTS -->
+<form ng-submit="addCards()" style="margin-top:30px; border-radius:15px; border:2px solid #B6FFE0; padding:20px;">
   <h3>Add a new Card</h3>
   <div class="form-group">
     <label for="typeSelect">Type : </label><br>
-    <select class="form-control" name="typeSelect" ng-model="card_type">
+    <select id="type_for_color_change" class="form-control" name="typeSelect" ng-model="card_type">
       <option value="announcement">announcement</option>
       <option value="assignment">assignment</option>
       <option value="grade">grade</option>
@@ -56,11 +69,13 @@
     <input type="text" class="form-control" placeholder="Card Title" ng-model="card_title"></input>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Card Content" ng-model="card_content"></input>
+    <textarea type="text" class="form-control" style="height:200px" cols="40" rows="10" placeholder="Card Content" ng-model="card_content"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
 <hr>
+
+<!-- ALL TODO PARTS -->
 <h2>- Todo -</h2>
 <div ng-repeat="todo in todos | orderBy:'done'" style="margin-top:20px;">
   <h4>

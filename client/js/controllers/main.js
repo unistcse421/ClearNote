@@ -22,9 +22,14 @@ angular.module('cleannote').controller('MainCtrl', ['$scope', 'sections', 'cards
 	$scope.course_name = '';
     };
     $scope.addCards = function() {
+        if (!$scope.card_type || $scope.card_type === '') {return;}
 	if (!$scope.card_title || $scope.card_title === '') {return;}
 	if (!$scope.card_content || $scope.card_content === '') {return;}
-	cards.create({
+//	$scope.getColor = if $scope.card_type is "announcement" then "red"
+//            if $scope.card_type is "assignment" then "blue"
+//            if $scope.card_type is "grade" then "green"
+//            if $scope.card_type is "discussion" then "yellow"
+        cards.create({
 	    card_type: $scope.card_type,
 	    title: $scope.card_title,
 	    content: $scope.card_content,
