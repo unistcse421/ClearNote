@@ -21,8 +21,8 @@
     <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
       <ul class="nav navbar-nav">
 	<li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-	<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-	<li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+	<li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Logout</a></li>
+	<li ng-hide="isLoggedIn()"><a href="/#/login">Login</a></li>
 	<li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
       </ul>
     </nav>
@@ -37,6 +37,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endinject -->
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>

@@ -36,16 +36,16 @@
   </h3>
   <p>
     {{card.content}}
+    <span>
+      | <a href="#/cards/{{card._id}}"> more > </a>
+    </span>
   </p>
-  <span>
-    <a href="#/cards/{{card._id}}">Comments</a>
-  </span>
 </div>
 <form ng-submit="addCards()" style="margin-top:30px;">
   <h3>Add a new Card</h3>
   <div class="form-group">
     <label for="typeSelect">Type : </label><br>
-    <select name="typeSelect" ng-model="card_type">
+    <select class="form-control" name="typeSelect" ng-model="card_type">
       <option value="announcement">announcement</option>
       <option value="assignment">assignment</option>
       <option value="grade">grade</option>
