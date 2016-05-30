@@ -12,7 +12,7 @@ var Todo = mongoose.model('Todo');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 router.get('/', auth, function(req, res, next) {
-    Todo.find({'creator':req.payload._id}).exec(function(err, todos) {
+    Todo.find({'creator':req.payload._id, 'done': false}).exec(function(err, todos) {
     	if (err) {return next(err);}
     	res.json(todos);
     });

@@ -1,7 +1,7 @@
 <!-- <script type="text/ng-template" id="/home.html"> -->
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
-    <div class="btn-group-vertical">
+    <div class="btn-group-vertical" style="top: 70px; position: fixed;">
       <form ng-submit="addSection()">
 	<button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#sectionModal">+ Create Section</button>
 	<div class="modal fade" id="sectionModal" role="dialog">
@@ -119,24 +119,20 @@
         </div>
       </div>
     </div>
-
     <hr>
   </div>
   <div class="col-md-2">
-    <div class="alert alert-info" style = "top: 100px; position: fixed;">
-      <h2>- Todo -</h2>
-      <div ng-repeat="todo in todos | orderBy:'done'" style="margin-top:20px;">
+    <div class="bg-grey" style = "top: 60px; position: fixed;">
+      <h4 style="background-color: #373c4b; color: #ffffff; padding: 12px;">TODO</h4>
+      <div ng-repeat="todo in todos | orderBy:'done'" style="padding-left: 20px; padding-top:1px; padding-bottom: 1px;">
 	<h4>
 	  <span ng-hide="todo.done" class="glyphicon glyphicon-unchecked" ng-click="finishTask(todo)"></span>
 	  <span ng-show="todo.done" class="glyphicon glyphicon-ok" ng-click="undoTask(todo)"></span>
 	  {{ todo.task }}
 	</h4>
       </div>
-      <form ng-submit="addTodo()" style="margin-top:30px;">
-	<h3>Add a new Todo</h3>
-	<div class="form-group">
-	  <input type="text" class="form-control" placeholder="Todo" ng-model="todo_task"></input>
-	</div>
+      <form ng-submit="addTodo()" class="form-inline" style="margin-top:30px; padding-left: 10px; padding-right: 10px;">
+	<input type="text" class="form-control" placeholder="Todo" ng-model="todo_task" size="25"></input>
 	<button type="submit" class="btn btn-primary">Add</button>
       </form>
     </div>
