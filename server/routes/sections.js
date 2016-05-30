@@ -76,7 +76,7 @@ router.get('/:section', function(req, res) {
 router.post('/:section/cards', auth, function(req, res, next) {
     var card = new Card(req.body);
     card.section = req.section;
-    card.author = req.payload.username;
+    card.creator = req.payload._id;
     card.save(function(err, card) {
 	if (err) {return next(err);}
 	req.section.cards.push(card);
@@ -89,6 +89,8 @@ router.post('/:section/cards', auth, function(req, res, next) {
 
 router.get('/:section/cards', function(req, res, next) {
     Card.find({'section': req.section._id})
+	.populate('creator')
+	.populate('section')
 	.exec(function(err, cards) {
 	    if (err) {return next(err);}
 	    res.json(cards);

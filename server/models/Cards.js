@@ -6,9 +6,8 @@ var CardSchema = new mongoose.Schema({
     content: String,
     pub_date: { type:Date, default: Date.now },
     section: {type: mongoose.Schema.Types.ObjectId, ref: 'Section'},
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
-    // creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-
 
 mongoose.model('Card', CardSchema);

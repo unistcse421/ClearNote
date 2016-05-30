@@ -46,14 +46,14 @@
 	<hr>
       </div>
       <div class="section" ng-repeat="section in sections">
-	<!-- <span ng-show="section.selected" class="glyphicon glyphicon-ok"></span> -->
+
 	<a href="#/home?sectionId={{section._id}}">
 	  <div class="section-number">
 	    {{section.course_id}}{{section.section_id}}
-
 	  </div>
 	  <div class="section-title">
 	    {{section.course_name}}
+	    <span ng-show="section.selected" class="glyphicon glyphicon-ok pull-right"></span>
 	  </div>
 	</a>
 	<a href="#/sections/{{section._id}}" ng-show="section.manage_authorized">
@@ -64,26 +64,8 @@
 
   </div>
   <div class="bg-grey col-md-6">
-    <h4>TIMELINE</h4>
-    <div ng-repeat="card in cards" style="margin-top:20px;">
-      <div class = "panel panel-info">
-	<div class = "panel-heading">
-	  <h3>
-	    {{card.title}}
-	  </h3>
-	</div>
-	<div class = "panel-body">
-	  <p>
-	    {{card.content}}
-	  </p>
-	</div>
-      </div>
-      <span>
-	<a href="#/cards/{{card._id}}">Comments</a>
-      </span>
-    </div>
     <form ng-submit="addCards()" style="margin-top:30px;">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cardModal">+ Add Card</button>
+      <h4>TIMELINE<button type="button" class="btn btn-default btn-md pull-right" data-toggle="modal" data-target="#cardModal">+ Add Card</button></h4>
       <div class="modal fade" id="cardModal" role="dialog">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
@@ -116,6 +98,28 @@
 	</div>
       </div>
     </form>
+    <div class="card" ng-repeat="card in cards" style="margin-top:20px;">
+      <div class="panel panel-normal">
+        <div class="panel-body">
+	  <p>
+	    <div style="font-size: 13px;">
+	      <span style="font-weight: bold;">{{card.creator.username}}</span>
+	      created
+	      <span style="font-weight: bold; color: #245894;">{{card.card_type}}</span>
+	      card to
+	      <span style="font-weight: bold; color: #f48a3d;">{{card.section.course_name}} Section</span>
+	      <span class="pull-right" style="color: #7d818b;">{{card.pub_date | date: "MM/dd/yyyy h:mma"}}</span>
+	    </div>
+	    <div class="title">Title : {{card.title}}</div></br>
+	    {{card.content}}
+	    <span class="more pull-right">
+      	      <a href="#/cards/{{card._id}}" style="font-size: 13px;">MORE></a>
+	    </span>
+	  </p>
+        </div>
+      </div>
+    </div>
+
     <hr>
   </div>
   <div class="col-md-2">

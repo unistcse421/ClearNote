@@ -9,6 +9,7 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
 	    return $http.get('/cards', {
 		headers: {Authorization: 'Bearer ' + auth.getToken()}
 	    }).success(function(data) {
+		console.log(data);
 		angular.copy(data, o.cards);
 	    });
 	}

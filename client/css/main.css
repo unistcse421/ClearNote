@@ -59,3 +59,16 @@ body {
 .section .section-title {
     font-size: 18px !important;
 }
+
+.card .panel-body {
+    font-size: 16px;
+}
+
+.card .panel-body .title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* .card .panel-body .create-info { */
+
+/* } */
