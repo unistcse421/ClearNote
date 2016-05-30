@@ -17,16 +17,14 @@ router.get('/', auth, function(req, res, next) {
 	if (err) {return next(err);}
 	Card
 	    .find({$or:[{'section': {'$in' : user.takes}}, {'section': {'$in' : user.teaches}}, {'section': {'$in' : user.manages}}]})
+	    .populate('creator')
+	    .populate('section')
 	    .exec(function(err, cards) {
 		if (err) {return next(err);}
 		console.log('cards : ' + cards);
 		res.json(cards);
 	    });
     });
-    // Card.find(function(err, cards) {
-    // 	if (err) {return next(err);}
-    // 	res.json(cards);
-    // });
 });
 
 router.post('/:card/comments', auth, function(req, res, next) {

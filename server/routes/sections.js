@@ -16,26 +16,28 @@ router.get('/', auth, function(req, res, next) {
     query.exec(function(err, user) {
 	console.log(user);
 	if (err) {return next(err);}
-	Section.find({$or:[{'_id': {'$in' : user.takes}}, {'_id': {'$in' : user.teaches}}, {'_id': {'$in' : user.manages}}]}).exec(function(err, sections) {
-	// Section.find({'_id': {'$in' : user.takes}}).exec(function(err, sections) {
-	    if (err) {return next(err);}
-	    console.log(sections);
-	    sections = sections.map(function (section) {
-		return section.toObject();
-	    });
-	    for (var j=0; j < sections.length; ++j) {
-		var section = sections[j];
-		section.manage_authorized = false;
-		for (var i=0; i < section.managers.length; ++i) {
-		    var managerId = section.managers[i];
-		    if (managerId == req.payload._id) {
-			section.manage_authorized = true;
-			break;
+	Section
+	    .find({$or:[{'_id': {'$in' : user.takes}}, {'_id': {'$in' : user.teaches}}, {'_id': {'$in' : user.manages}}]})
+	    .exec(function(err, sections) {
+		// Section.find({'_id': {'$in' : user.takes}}).exec(function(err, sections) {
+		if (err) {return next(err);}
+		console.log(sections);
+		sections = sections.map(function (section) {
+		    return section.toObject();
+		});
+		for (var j=0; j < sections.length; ++j) {
+		    var section = sections[j];
+		    section.manage_authorized = false;
+		    for (var i=0; i < section.managers.length; ++i) {
+			var managerId = section.managers[i];
+			if (managerId == req.payload._id) {
+			    section.manage_authorized = true;
+			    break;
+			}
 		    }
 		}
-	    }
-	    res.json(sections);
-	});
+		res.json(sections);
+	    });
     });
 });
 
