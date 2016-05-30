@@ -6,3 +6,34 @@ body {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.mynav {
+    background-color: #14ac86;
+}
+
+.navbar {
+    margin-bottom: 0;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #14ac86 !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+.view-container {
+    margin-top:70px;
+}
