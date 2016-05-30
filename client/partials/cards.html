@@ -1,23 +1,40 @@
 <!-- <script type="text/ng-template" id="/cards.html"> -->
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
 <div class="page-header">
-  <h3>
-    {{card.title}}
-  </h3>
-  <p style="font-size:20px; padding=5px;">{{card.content}}</p>
-</div>
-
-<div ng-repeat="comment in card.comments">
-  <span style="font-size:20px; margin-left:10px;">{{comment.body}}</spsan> - {{comment.author}}
-</div>
-<form ng-submit="addComment()"
-      style="margin-top:30px;">
-  <h3>Add a new comment</h3>
+<div class="panel panel-info" style="margin-top:80px;">
+      <div class="panel-heading">
+    <h3>
+     {{card.title}}
+    </h3>
+    </div>
+    <div class="panel-body">
+    <p style="font-size:20px; padding=5px;">{{card.content}}</p>
+<div style="background-color:#DDDDDD">
+<form ng-submit="addComment()" style="margin-top:30px; padding: 10px 10px 10px 10px">
   <div class="form-group">
+  <table style="width:100%">
+  <tr>
+  <td>
     <input type="text"
-	   class="form-control"
-	   placeholder="Comment"
-	   ng-model="body"></input>
+     class="form-control"
+     placeholder="Comment"
+     ng-model="body"></input>
+     </td>
+     <td>
+     <button type="submit" class="btn btn-primary">Post</button>
+     </td>
+     </tr>
+     </table>
   </div>
-  <button type="submit" class="btn btn-primary">Post</button>
+      <div ng-repeat="comment in card.comments">
+  <span style="color:#31708f; font-weight:bold"> {{comment.author}}</span>
+  <span style="font-family:굴림;font-size:15px; margin-left:10px;">{{comment.body}}</spsan>
+</div>
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- </script> -->
