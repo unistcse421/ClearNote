@@ -2,52 +2,69 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <div class="btn-group-vertical">
-      <div class="section">
-	<a href="#/home">All</a>
-      </div>
-      <div class="section" ng-repeat="section in sections">
-	<span ng-show="section.selected" class="glyphicon glyphicon-ok"></span>
-	<a href="#/home?sectionId={{section._id}}">{{section.course_id}}{{section.section_id}} -  {{section.course_name}}</a>
-	<a href="#/sections/{{section._id}}" ng-show="section.manage_authorized" class="glyphicon glyphicon-pencil"></a>
-      </div>
-    </div>
-    <form ng-submit="addSection()" style="margin-top:30px;">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sectionModal">+</button>
-      <div class="modal fade" id="sectionModal" role="dialog">
-	<div class="modal-dialog modal-sm">
-	  <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add a new Section</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-		<input type="text" class="form-control" placeholder="Course Id" ng-model="course_id"></input>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Section Id" ng-model="section_id"></input>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Semester" ng-model="semester"></input>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Year" ng-model="year"></input>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Course Name" ng-model="course_name"></input>
-	      </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Add</button data-dismiss="modal">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+      <form ng-submit="addSection()">
+	<button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#sectionModal">+ Create Section</button>
+	<div class="modal fade" id="sectionModal" role="dialog">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+              <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4 class="modal-title">Add a new Section</h4>
+              </div>
+              <div class="modal-body">
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Course Id" ng-model="course_id"></input>
+		</div>
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Section Id" ng-model="section_id"></input>
+		</div>
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Semester" ng-model="semester"></input>
+		</div>
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Year" ng-model="year"></input>
+		</div>
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Course Name" ng-model="course_name"></input>
+		</div>
+              </div>
+              <div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Add</button data-dismiss="modal">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+	    </div>
 	  </div>
 	</div>
-    </form>
+      </form>
+      <hr>
+      <div class="section">
+	<div class="section-tag">
+	  <a href="#/home">
+	    <div class="section-title">ALL Courses</div>
+	  </a>
+	</div>
+	<hr>
+      </div>
+      <div class="section" ng-repeat="section in sections">
+	<!-- <span ng-show="section.selected" class="glyphicon glyphicon-ok"></span> -->
+	<a href="#/home?sectionId={{section._id}}">
+	  <div class="section-number">
+	    {{section.course_id}}{{section.section_id}}
+
+	  </div>
+	  <div class="section-title">
+	    {{section.course_name}}
+	  </div>
+	</a>
+	<a href="#/sections/{{section._id}}" ng-show="section.manage_authorized">
+	  <span class="glyphicon glyphicon-pencil"></span>edit</a>
+	<hr>
+      </div>
     </div>
+
   </div>
-  <div class="col-md-6">
-    <h2> - Cards - </h2>
+  <div class="bg-grey col-md-6">
+    <h4>TIMELINE</h4>
     <div ng-repeat="card in cards" style="margin-top:20px;">
       <div class = "panel panel-info">
 	<div class = "panel-heading">
@@ -66,7 +83,7 @@
       </span>
     </div>
     <form ng-submit="addCards()" style="margin-top:30px;">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cardModal">+</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cardModal">+ Add Card</button>
       <div class="modal fade" id="cardModal" role="dialog">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
