@@ -19,6 +19,7 @@ router.get('/', auth, function(req, res, next) {
 	    .find({$or:[{'section': {'$in' : user.takes}}, {'section': {'$in' : user.teaches}}, {'section': {'$in' : user.manages}}]})
 	    .populate('creator')
 	    .populate('section')
+	    .sort('-pub_date')
 	    .exec(function(err, cards) {
 		if (err) {return next(err);}
 		console.log('cards : ' + cards);

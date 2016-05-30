@@ -24,7 +24,7 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
     	return $http.post('/sections/' + o.sectionId + '/cards', card, {
 	    headers: {Authorization: 'Bearer ' + auth.getToken()}
 	}).success(function(data) {
-	    o.cards.push(data);
+	    o.cards.unshift(data);
 	});
     };
     o.get = function(id) {

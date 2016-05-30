@@ -93,6 +93,7 @@ router.get('/:section/cards', function(req, res, next) {
     Card.find({'section': req.section._id})
 	.populate('creator')
 	.populate('section')
+	.sort('-pub_date')
 	.exec(function(err, cards) {
 	    if (err) {return next(err);}
 	    res.json(cards);

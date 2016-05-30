@@ -1,30 +1,28 @@
-<!-- <script type="text/ng-template" id="/sections.html"> -->
 <div class="col-md-6 col-md-offset-3">
-<div class="page-header" style="margin-top:60px;">
-  <h1>{{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h1>
-  <h2>- Students -</h2>
-  <div ng-repeat="student in section.students" style="margin-bottom:10px;">
-    <button class="btn" data-ng-click="removeStudent(student._id)">&times;</button> {{ student.user_id }} {{ student.username }}
-  </div>
-  <button class="btn btn-primary" ng-click="selectStudents()">
-    Add Student
-  </button>
+  <div class="page-header" style="margin-top:60px;">
+    <h1>{{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h1>
+    <h2>- Students -</h2>
+    <div ng-repeat="student in section.students" style="margin-bottom:10px;">
+      <button class="btn" data-ng-click="removeStudent(student._id)">&times;</button> {{ student.user_id }} {{ student.username }}
+    </div>
+    <button class="btn btn-primary" ng-click="selectStudents()">
+      Add Student
+    </button>
 
-  <h2>- Instructors -</h2>
-  <div ng-repeat="instructor in section.instructors" style="margin-bottom:10px;">
-    <button class="btn" data-ng-click="removeInstructor(instructor._id)">&times;</button> {{ instructor.user_id }} {{ instructor.username }}
-  </div>
-  <button class="btn btn-primary" ng-click="selectInstructors()">
-    Add Instructor
-  </button>
+    <h2>- Instructors -</h2>
+    <div ng-repeat="instructor in section.instructors" style="margin-bottom:10px;">
+      <button class="btn" data-ng-click="removeInstructor(instructor._id)">&times;</button> {{ instructor.user_id }} {{ instructor.username }}
+    </div>
+    <button class="btn btn-primary" ng-click="selectInstructors()">
+      Add Instructor
+    </button>
 
-  <h2>- Managers -</h2>
-  <div ng-repeat="manager in section.managers" style="margin-bottom:10px;">
-    <button class="btn" data-ng-click="removeManager(manager._id)">&times;</button> {{ manager.user_id }} {{ manager.username }}
+    <h2>- Managers -</h2>
+    <div ng-repeat="manager in section.managers" style="margin-bottom:10px;">
+      <button class="btn" data-ng-click="removeManager(manager._id)">&times;</button> {{ manager.user_id }} {{ manager.username }}
+    </div>
+    <button class="btn btn-primary" ng-click="selectManagers()">
+      Add Manager
+    </button>
   </div>
-  <button class="btn btn-primary" ng-click="selectManagers()">
-    Add Manager
-  </button>
 </div>
-</div>
-<!-- </script> -->

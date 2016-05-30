@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h4 class="modal-title">Add a new card</h4>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="typeSelect">Type : </label><br>
+    <select class="form-control" name="typeSelect" ng-model="card_type">
+      <option value="announcement">announcement</option>
+      <option value="assignment">assignment</option>
+      <option value="grade">grade</option>
+      <option value="discussion">discussion</option>
+    </select><br>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Card Title" ng-model="card_title"></input>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Card Content" ng-model="card_content"></input>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-ng-click="ok()">Add</button>
+  <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+</div>

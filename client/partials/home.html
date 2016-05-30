@@ -1,41 +1,7 @@
-<!-- <script type="text/ng-template" id="/home.html"> -->
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <div class="btn-group-vertical">
-      <form ng-submit="addSection()">
-	<button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#sectionModal">+ Create Section</button>
-	<div class="modal fade" id="sectionModal" role="dialog">
-	  <div class="modal-dialog modal-sm">
-	    <div class="modal-content">
-              <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		<h4 class="modal-title">Add a new Section</h4>
-              </div>
-              <div class="modal-body">
-		<div class="form-group">
-		  <input type="text" class="form-control" placeholder="Course Id" ng-model="course_id"></input>
-		</div>
-		<div class="form-group">
-		  <input type="text" class="form-control" placeholder="Section Id" ng-model="section_id"></input>
-		</div>
-		<div class="form-group">
-		  <input type="text" class="form-control" placeholder="Semester" ng-model="semester"></input>
-		</div>
-		<div class="form-group">
-		  <input type="text" class="form-control" placeholder="Year" ng-model="year"></input>
-		</div>
-		<div class="form-group">
-		  <input type="text" class="form-control" placeholder="Course Name" ng-model="course_name"></input>
-		</div>
-              </div>
-              <div class="modal-footer">
-		<button type="submit" class="btn btn-primary">Add</button data-dismiss="modal">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-	    </div>
-	  </div>
-	</div>
-      </form>
+      <button type="button" class="btn btn-default btn-md" ng-click="showAddSectionModal()">+ Create Section</button>
       <hr>
       <div class="section">
 	<div class="section-tag">
@@ -64,40 +30,9 @@
 
   </div>
   <div class="bg-grey col-md-6">
-    <form ng-submit="addCards()" style="margin-top:30px;">
-      <h4>TIMELINE<button type="button" class="btn btn-default btn-md pull-right" data-toggle="modal" data-target="#cardModal">+ Add Card</button></h4>
-      <div class="modal fade" id="cardModal" role="dialog">
-	<div class="modal-dialog modal-lg">
-	  <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add a new card</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-		<label for="typeSelect">Type : </label><br>
-		<select class="form-control" name="typeSelect" ng-model="card_type">
-		  <option value="announcement">announcement</option>
-		  <option value="assignment">assignment</option>
-		  <option value="grade">grade</option>
-		  <option value="discussion">discussion</option>
-		</select><br>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Card Title" ng-model="card_title"></input>
-	      </div>
-	      <div class="form-group">
-		<input type="text" class="form-control" placeholder="Card Content" ng-model="card_content"></input>
-	      </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Add</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-	  </div>
-	</div>
-      </div>
-    </form>
+    <div style="padding: 4px;">
+      <h4>TIMELINE<button type="button" class="btn btn-default btn-md pull-right" ng-click="showAddCardModal()">+ Add Card</button></h4>
+    </div>
     <div class="card" ng-repeat="card in cards" style="margin-top:20px;">
       <div class="panel panel-normal">
         <div class="panel-body">
@@ -124,7 +59,7 @@
   <div class="col-md-2">
     <div class="bg-grey" style = "top: 60px; position: fixed;">
       <h4 style="background-color: #373c4b; color: #ffffff; padding: 12px;">TODO</h4>
-      <div ng-repeat="todo in todos | orderBy:'done'" style="padding-left: 20px; padding-top:1px; padding-bottom: 1px;">
+      <div ng-repeat="todo in todos" style="padding-left: 20px; padding-top:1px; padding-bottom: 1px;">
 	<h4>
 	  <span ng-hide="todo.done" class="glyphicon glyphicon-unchecked" ng-click="finishTask(todo)"></span>
 	  <span ng-show="todo.done" class="glyphicon glyphicon-ok" ng-click="undoTask(todo)"></span>
@@ -138,4 +73,3 @@
     </div>
   </div>
 </div>
-<!-- </script> -->
