@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-  "node": "4.1.1"
+  "node": "5.0.0",
+  "npm": "3.3.6"
   },
   "scripts": {
     "start": "node app",
-    "postinstall": "gulp default"
+    "postinstall": "bower install && gulp default"
   },
   "dependencies": {
     "angular": "^1.5.5",
