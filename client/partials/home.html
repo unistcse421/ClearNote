@@ -40,7 +40,10 @@
 	    <div style="font-size: 13px;">
 	      <span style="font-weight: bold;">{{card.creator.username}}</span>
 	      created
-	      <span style="font-weight: bold; color: #245894;">{{card.card_type}}</span>
+	      <span ng-show="card.card_type == 'announcement'" style="font-weight: bold; color: #245894;">{{card.card_type}}</span>
+	      <span ng-show="card.card_type == 'assignment'" style="font-weight: bold; color: #ff0000;">{{card.card_type}}</span>
+	      <span ng-show="card.card_type == 'grade'" style="font-weight: bold; color: #00ff00;">{{card.card_type}}</span>
+	      <span ng-show="card.card_type == 'discussion'" style="font-weight: bold; color: #0000ff;">{{card.card_type}}</span>
 	      card to
 	      <span style="font-weight: bold; color: #f48a3d;">{{card.section.course_name}} Section</span>
 	      <span class="pull-right" style="color: #7d818b;">{{card.pub_date | date: "MM/dd/yyyy h:mma"}}</span>
