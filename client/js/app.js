@@ -1,4 +1,4 @@
-var app = angular.module('cleannote', ['ui.router']);
+var app = angular.module('cleannote', ['ui.router', 'ui.bootstrap']);
 
 app.config([
     '$stateProvider',

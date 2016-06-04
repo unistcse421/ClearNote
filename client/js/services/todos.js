@@ -3,7 +3,9 @@ angular.module('cleannote').factory('todos', ['$http', 'auth', function($http, a
 	todos: []
     };
     o.getAll = function() {
-	return $http.get('/todos').success(function(data) {
+	return $http.get('/todos', {
+	    headers: {Authorization: 'Bearer ' + auth.getToken()}
+	}).success(function(data) {
 	    angular.copy(data, o.todos);
 	});
     };

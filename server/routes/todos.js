@@ -11,18 +11,27 @@ var Todo = mongoose.model('Todo');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
-router.get('/', function(req, res, next) {
-    Todo.find(function(err, todos) {
-	if (err) {return next(err);}
-	res.json(todos);
+router.get('/', auth, function(req, res, next) {
+    Todo.find({'creator':req.payload._id, 'done': false}).exec(function(err, todos) {
+    	if (err) {return next(err);}
+    	res.json(todos);
     });
 });
 
 router.post('/', auth, function(req, res, next) {
     var todo = new Todo(req.body);
+    todo.creator = req.payload._id;
     todo.save(function(err, todo) {
 	if (err) { return next(err); }
-	res.json(todo);
+	var query = User.findById(req.payload._id);
+	query.exec(function(err, user) {
+	    if (err) { return next(err); }
+	    user.todos.push(todo);
+	    user.save(function(err) {
+		if (err) { return next(err); }
+		res.json(todo);
+	    });
+	});
     });
 });
 

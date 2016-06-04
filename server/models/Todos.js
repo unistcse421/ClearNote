@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var TodoSchema = new mongoose.Schema({
     task: String,
     done: {type: Boolean, default: false},
-    // creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 TodoSchema.methods.finish = function(cb) {

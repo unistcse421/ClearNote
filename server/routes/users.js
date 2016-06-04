@@ -11,6 +11,13 @@ var Todo = mongoose.model('Todo');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
+router.get('/', function(req, res, next) {
+    User.find(function(err, users) {
+	if (err) {return next(err);}
+	res.json(users);
+    });
+});
+
 router.post('/register', function(req, res, nest) {
     if (!req.body.user_id || !req.body.password || !req.body.username) {
 	return res.status(400).json({message: 'Please fill out all fields'});

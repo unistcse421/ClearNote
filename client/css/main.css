@@ -1,3 +1,74 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.modal-body .select-list {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.mynav {
+    background-color: #14ac86;
+}
+
+.navbar {
+    margin-bottom: 0;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #14ac86 !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+.view-container {
+    margin-top:70px;
+}
+
+.bg-grey {
+    background-color: #f6f6f6;
+}
+
+.section a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.section a:hover {
+    text-decoration: none;
+    color: #14ac86 !important;
+}
+
+.section .section-number {
+    font-size: 12px !important;
+}
+
+.section .section-title {
+    font-size: 18px !important;
+}
+
+.card .panel-body {
+    font-size: 16px;
+}
+
+.card .panel-body .title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* .card .panel-body .create-info { */
+
+/* } */
