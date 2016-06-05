@@ -31,7 +31,7 @@
   </div>
   <div class="bg-grey col-md-6">
     <div style="padding: 4px;">
-      <h4>TIMELINE<button type="button" class="btn btn-green btn-md pull-right" ng-click="showAddCardModal()">+ Add Card</button></h4>
+      <h4>TIMELINE<button type="button" class="btn btn-default btn-md pull-right" ng-click="showAddCardModal()">+ Add Card</button></h4>
     </div>
     <div class="card" ng-repeat="card in cards" style="margin-top:20px;">
       <div class="panel panel-normal">
@@ -41,8 +41,8 @@
 	      <span style="font-weight: bold;">{{card.creator.username}}</span>
 	      created
 	      <span ng-show="card.card_type == 'announcement'" style="font-weight: bold; color: #245894;">{{card.card_type}}</span>
-        <span ng-show="card.card_type == 'assignment'" style="font-weight: bold; color: #ff0000;">{{card.card_type}}</span>
-        <span ng-show="card.card_type == 'grade'" style="font-weight: bold; color: #00ff00;">{{card.card_type}}</span>
+        <span ng-show="card.card_type == 'assignment'" style="font-weight: bold; color: #e93409;">{{card.card_type}}</span>
+        <span ng-show="card.card_type == 'grade'" style="font-weight: bold; color: #23ac02;">{{card.card_type}}</span>
         <span ng-show="card.card_type == 'discussion'" style="font-weight: bold; color: #0000ff;">{{card.card_type}}</span>
 	      card to
 	      <span style="font-weight: bold; color: #f48a3d;">{{card.section.course_name}} Section</span>
@@ -59,12 +59,12 @@
     </div>
     <hr>
   </div>
-  <div class="col-md-2">      
+  <div class="col-md-2">
   <div ng-hide="myCheck">
     <div ng-app="ngAnimate" class="bg-grey" style = "top: 60px; position: fixed;">
       <div style="background-color: #373c4b; padding: 12px;">
       <a style=" color: #ffffff;">TODO</a>
-      <span style=" color: black; padding-left: 60%; padding-bottom: 10px; text-align: right; color: #ffffff;">Hide 
+      <span style=" color: black; padding-left: 60%; padding-bottom: 10px; text-align: right; color: #ffffff;">Hide
       <input type="checkbox" ng-model="myCheck" style="align: right;">
       </span>
       </div>
@@ -77,7 +77,7 @@
       </div>
       <form ng-submit="addTodo()" class="form-inline" style="margin-top:30px; padding-left: 10px; padding-right: 10px;">
 	<input type="text" class="form-control" placeholder="Todo" ng-model="todo_task" size="25"></input>
-	<button type="submit" class="w3-btn w3-padding w3-green">Add</button>
+	<button type="submit" class="btn btn-default btn-md">Add</button>
       </form>
     </div>
     </div>
