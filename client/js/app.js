@@ -60,6 +60,16 @@ app.config([
 	    	    return sections.get($stateParams.id);
 	    	}]
 	    }
+	})
+	.state('chat', {
+	    url: '/chat/{id}',
+	    templateUrl: './partials/chat.html',
+	    controller: 'ChatCtrl',
+	    resolve: {
+	    	section: ['$stateParams', 'sections', function($stateParams, sections) {
+	    	    return sections.get($stateParams.id);
+	    	}]
+	    }
 	});
 	$urlRouterProvider.otherwise('login');
     }

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-  "node": "5.0.0",
-  "npm": "3.3.6"
+    "node": "5.0.0",
+    "npm": "3.3.6"
   },
   "scripts": {
     "start": "node app",
@@ -50,6 +50,7 @@
     "main-bower-files": "^2.13.0",
     "require-all": "^2.0.0",
     "run-sequence": "^1.1.5",
+    "socket.io": "^1.4.6",
     "underscore": "^1.8.3"
   }
 }

@@ -31,7 +31,12 @@
   </div>
   <div class="bg-grey col-md-6">
     <div style="padding: 4px;">
-      <h4>TIMELINE : {{ selectedSection.course_name }} <button type="button" class="btn btn-default btn-md pull-right" ng-click="showAddCardModal()" ng-show="edit_auth">+ Add Card</button></h4>
+      <div style="padding-top: 15px;"><h4 style="display: inline;">TIMELINE : {{ selectedSection.course_name }}</h4>
+	<span class="pull-right">
+	  <a ng-show="selectedSection" href="#/chat/{{ selectedSection._id }}">CHAT</a>
+	  <button type="button" style="margin-left: 15px;" class="btn btn-default btn-md" ng-click="showAddCardModal()" ng-show="edit_auth">+ Add Card</button>
+	</span>
+      </div>
     </div>
     <div class="card" ng-repeat="card in cards" style="margin-top:20px;">
       <div class="panel panel-normal">

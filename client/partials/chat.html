@@ -1,0 +1,15 @@
+<div class="row chat">
+  <div class="col-md-6 col-md-offset-3 bg-grey" style="height: 100%;">
+    <h4>SECTION : {{ section.course_name }}</h4>
+    <div id="chatBox" schroll-bottom="messages">
+      <div ng-repeat="message in messages">
+        <div class="chatMessage">
+          <div class="messageTextInMessage">{{ message.user }} : {{ message.message }}</div>
+        </div>
+      </div>
+    </div>
+    <form class="message-line">
+      <input id="m" autocomplete="off" ng-model="message"/><button type="submit" ng-click="sendMessage()">Send</button>
+    </form>
+  </div>
+</div>
