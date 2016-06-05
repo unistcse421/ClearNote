@@ -31,7 +31,7 @@ router.get('/', auth, function(req, res, next) {
 router.post('/:card/comments', auth, function(req, res, next) {
     var comment = new Comment(req.body);
     comment.card = req.card;
-    comment.author = req.payload.username;
+    comment.creator = req.payload._id;
     comment.save(function(err, comment) {
 	if (err) {return next(err);}
 	req.card.comments.push(comment);
@@ -41,8 +41,6 @@ router.post('/:card/comments', auth, function(req, res, next) {
 	});
     });
 });
-
-
 
 router.param('card', function(req, res, next, id) {
     var query = Card.findById(id);
@@ -55,10 +53,14 @@ router.param('card', function(req, res, next, id) {
 });
 
 router.get('/:card', function(req, res) {
-    req.card.populate('comments', function(err, card) {
-	if (err) { return next(err); }
-	res.json(card);
-    });
+    req.card
+	.populate('comments', function(err, card) {
+	    if (err) { return next(err); }
+	    Comment.populate(card.comments, 'creator', function(err, comments) {
+	    	if (err) {return next(err);}
+	    	res.json(card);
+	    });
+	});
 });
 
 module.exports = router;

@@ -24,7 +24,7 @@
       <button type="submit" class="btn btn-success btn-md">Add</button>
     </form>
     <div ng-repeat="comment in card.comments" style="padding-left: 20px; padding-bottom: 10px;">
-      <span style="color:#3BA944; font-weight:bold"> {{comment.author}}</span>
+      <span style="color:#3BA944; font-weight:bold"> {{comment.creator.username}}</span>
       <span style="font-size:15px; margin-left:10px;">{{comment.body}}</span>
     </div>
   </div>
