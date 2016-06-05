@@ -63,7 +63,20 @@
   <div ng-hide="myCheck">
     <div ng-app="ngAnimate" class="bg-grey" style = "top: 60px; position: fixed;">
       <div style="background-color: #373c4b; padding: 12px;">
-      <a style=" color: #ffffff;">TODO</a>
+      <table>
+      <td rowspan="2">
+      <a style=" color: #ffffff;">TODO </a>
+      </td>
+      <td>
+      hello
+      </td>
+      <td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style=" color: black; padding-left: 10px; padding-bottom: 10px; text-align: right; color: #ffffff;">Hide
+      <input type="checkbox" ng-model="myCheck" style="align: right;"></span>
+   
+      </td>
+      </table>
       </div>
       <div ng-repeat="todo in todos" style="padding-left: 20px; padding-top:1px; padding-bottom: 1px;">
 	<h4>
@@ -76,15 +89,12 @@
 	<input type="text" class="form-control" placeholder="Todo" ng-model="todo_task" size="25"></input>
 	<button type="submit" class="w3-btn w3-padding w3-green">Add</button>
       </form>
-      <table>
-      <tr>
-      <span style=" color: black; padding-left: 10px; padding-bottom: 10px; text-align: right;">Hide <input type="checkbox" ng-model="myCheck" style="align: right;"></span>
-      </tr>
-      </table>
+
+
     </div>
     </div>
     <div ng-show="myCheck">
-     <span style=" color: black; padding-left: 10px; padding-bottom: 10px;">Show <input type="checkbox" ng-model="myCheck"></span>
+     <span style=" color: black; padding-left: 10px; padding-bottom: 10px; "><b>TODO&nbsp;</b> <input type="checkbox" ng-model="myCheck"></span>
     </div>
   </div>
 </div>
