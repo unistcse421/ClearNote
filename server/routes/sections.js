@@ -84,6 +84,23 @@ router.post('/:section/cards', auth, function(req, res, next) {
 	req.section.cards.push(card);
 	req.section.save(function(err, section) {
 	    if (err) { return next(err); }
+	    if (card.card_type == 'assignment') {
+		console.log('add assignment card');
+		for (var i=0; i<section.students.length; i++) {
+		    var todo = new Todo({task: card.title, creator: section.students[i]});
+		    todo.save(function(err, todo) {
+			if (err) { return next(err); }
+			var query = User.findById(todo.creator);
+			query.exec(function(err, user) {
+			    if (err) { return next(err); }
+			    user.todos.push(todo);
+			    user.save(function(err) {
+				if (err) { return next(err); }
+			    });
+			});
+		    });
+		}
+	    }
 	    res.json(card);
 	});
     });
