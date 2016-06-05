@@ -89,14 +89,19 @@ router.post('/:section/cards', auth, function(req, res, next) {
     });
 });
 
-router.get('/:section/cards', function(req, res, next) {
-    Card.find({'section': req.section._id})
-	.populate('creator')
-	.populate('section')
-	.sort('-pub_date')
-	.exec(function(err, cards) {
+router.get('/:section/cards', auth, function(req, res, next) {
+    Section.findById(req.section._id)
+	.exec(function(err, section) {
 	    if (err) {return next(err);}
-	    res.json(cards);
+	    var edit_auth = section.hasEditAuth(req.payload._id);
+	    Card.find({'section': section._id})
+		.populate('creator')
+		.populate('section', {cards: 0, students: 0, instructors: 0, managers: 0})
+		.sort('-pub_date')
+		.exec(function(err, cards) {
+		    if (err) {return next(err);}
+		    res.json({edit_auth: edit_auth, cards: cards});
+		});
 	});
 });
 
