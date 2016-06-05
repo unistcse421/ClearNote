@@ -2,15 +2,24 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 <div class="page-header">
-<div class="panel panel-info" style="margin-top:80px;">
+<div class="panel panel-success" style="margin-top:80px;">
       <div class="panel-heading">
     <h3>
      {{card.title}}
     </h3>
+    <table>
+    <td style="color:#3c763d">
+    {{card.section.course_name}}-{{card.card_type}}
+    </td>
+    <td>
+    <div style="text-align:right; color:#3c763d">
+    {{card.pub_date | date: "MM/dd/yyyy h:mma"}}</div>
+    </td>
+    </table>
     </div>
     <div class="panel-body">
     <p style="font-size:20px; padding=5px;">{{card.content}}</p>
-<div style="background-color:#DDDDDD">
+<div style="background-color:#EEEEEE">
 <form ng-submit="addComment()" style="margin-top:30px; padding: 10px 10px 10px 10px">
   <div class="form-group">
   <table style="width:100%">
@@ -28,7 +37,7 @@
      </table>
   </div>
       <div ng-repeat="comment in card.comments">
-  <span style="color:#31708f; font-weight:bold"> {{comment.author}}</span>
+  <span style="color:#3BA944; font-weight:bold"> {{comment.author}}</span>
   <span style="font-family:굴림;font-size:15px; margin-left:10px;">{{comment.body}}</spsan>
 </div>
 </form>

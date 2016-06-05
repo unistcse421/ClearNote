@@ -6,8 +6,6 @@
     <div ng-show="error" class="alert alert-danger row">
       <span>{{ error.message }}</span>
     </div>
-  <!-- </div> -->
-  <!-- <div class="col-md-3"> -->
     <form ng-submit="logIn()">
       <h3>Log In</h3>
       <div class="form-group">
@@ -17,6 +15,7 @@
 	<input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
       </div>
       <button type="submit" class="btn btn-block btn-green pull-right">Log In</button>
+
     </form>
   </div>
 </div>
