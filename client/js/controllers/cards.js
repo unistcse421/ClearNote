@@ -3,8 +3,7 @@ angular.module('cleannote').controller('CardsCtrl', ['$scope', '$stateParams', '
     $scope.addComment = function() {
 	if ($scope.body === '') { return; }
 	cards.addComment(card._id, {
-	    body: $scope.body,
-	    author: 'user'
+	    body: $scope.body
 	}).success(function(comment) {
 	    $scope.card.comments.push(comment);
 	});

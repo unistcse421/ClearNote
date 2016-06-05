@@ -35,9 +35,12 @@ router.post('/:card/comments', auth, function(req, res, next) {
     comment.save(function(err, comment) {
 	if (err) {return next(err);}
 	req.card.comments.push(comment);
-	req.card.save(function(err, post) {
+	req.card.save(function(err, card) {
 	    if (err) { return next(err); }
-	    res.json(comment);
+	    comment.populate('creator', function(err, comment) {
+	    	if (err) {return next(err);}
+		res.json(comment);
+	    });
 	});
     });
 });
