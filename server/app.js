@@ -21,6 +21,7 @@ require('./config/passport');
 var uristring =
     process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
+    process.env.MONGODB_URL ||
     'mongodb://localhost/cleannote';
 mongoose.connect(uristring, function (err, res) {
     if (err) {
