@@ -5,6 +5,7 @@ var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var livereload = require('gulp-livereload');
+var connect = require('gulp-connect');
 var config = require('./server/config/environment');
 
 var jshint = require('gulp-jshint');
@@ -112,6 +113,13 @@ gulp.task('default', function() {
 		['lint', 'inject'],
 		['connect']);
 
+});
+
+gulp.task('serveprod', function() {
+    connect.server({
+	port: process.env.PORT || 5000,
+	livereload: false
+    });
 });
 
 // gulp.task('build', function() {

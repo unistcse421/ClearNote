@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node app",
-    "postinstall": "bower install && gulp default"
+    "postinstall": "bower install && gulp serveprod"
   },
   "dependencies": {
     "angular": "^1.5.5",
@@ -38,6 +38,7 @@
     "browser-sync": "^2.12.12",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
+    "gulp-connect": "^4.0.0",
     "gulp-docco": "0.0.4",
     "gulp-inject": "^4.0.0",
     "gulp-jshint": "^2.0.0",
