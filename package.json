@@ -35,7 +35,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.12.5",
+    "browser-sync": "^2.12.12",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-docco": "0.0.4",
