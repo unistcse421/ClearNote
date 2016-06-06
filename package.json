@@ -7,8 +7,8 @@
     "npm": "3.3.6"
   },
   "scripts": {
-    "start": "node app",
-    "postinstall": "bower install && gulp default"
+    "start": "node server/app.js",
+    "postinstall": "bower install && npm start"
   },
   "dependencies": {
     "angular": "^1.5.5",
