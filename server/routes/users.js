@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/register', function(req, res, nest) {
+router.post('/register', function(req, res, next) {
     if (!req.body.user_id || !req.body.password || !req.body.username) {
 	return res.status(400).json({message: 'Please fill out all fields'});
     }
