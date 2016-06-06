@@ -57,6 +57,8 @@ router.param('card', function(req, res, next, id) {
 
 router.get('/:card', function(req, res) {
     req.card
+	.populate('creator')
+	.populate('section')
 	.populate('comments', function(err, card) {
 	    if (err) { return next(err); }
 	    Comment.populate(card.comments, 'creator', function(err, comments) {
