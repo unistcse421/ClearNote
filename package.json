@@ -33,9 +33,6 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0",
-    "socket.io": "^1.4.6"
-  },
-  "devDependencies": {
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^4.0.0",
@@ -53,5 +50,8 @@
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.6",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+
   }
 }
