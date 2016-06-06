@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node app",
-    "postinstall": "bower install && gulp serveprod"
+    "postinstall": "bower install && gulp default"
   },
   "dependencies": {
     "angular": "^1.5.5",
