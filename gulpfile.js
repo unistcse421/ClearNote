@@ -1,11 +1,9 @@
 var gulp = require('gulp');
 
 var gutil = require('gulp-util');
-// var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var livereload = require('gulp-livereload');
-var connect = require('gulp-connect');
 var config = require('./server/config/environment');
 
 var jshint = require('gulp-jshint');
@@ -114,18 +112,3 @@ gulp.task('default', function() {
 		['connect']);
 
 });
-
-// gulp.task('serveprod', function() {
-//     connect.server({
-// 	port: process.env.PORT || 5000,
-// 	livereload: false
-//     });
-// });
-
-// gulp.task('build', function() {
-//   runSequence(
-//       ['clean'],
-//       ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components'],
-//       ['connectDist']
-//   );
-// });
