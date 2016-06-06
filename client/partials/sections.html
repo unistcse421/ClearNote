@@ -1,51 +1,49 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 bg-grey">
-    <div class="page-header" style="margin-top:60px; background-color: #dff0d8;">
-      <h1 style="text-align:center; color:#3BA944; padding-top:20px">{{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h1>
-      <table>
-	<th style="width:33%">
-	  <div style="margin:5px; background-color: #fefefe; height:100%;">
-	    <h2 style="text-align:center; padding-top:10px; color:#3BA944"> Students </h2>
-	    <div style="height:300px;overflow-y: auto">
-	      <div ng-repeat="student in section.students" style="margin:10px;">
-		<button class="btn" data-ng-click="removeStudent(student._id)" >&times;</button> {{ student.user_id }} {{ student.username }}
-	      </div>
-	      <br>
-	    </div>
-	    <button class="btn btn-success" ng-click="selectStudents()" align="center" style="margin:10px">
-	      Add Student
-	    </button>
-	  </div>
-	</th>
-	<th style="width:33%">
-	  <div style="margin:5px; background-color: #fefefe; height:100%;">
-	    <h2 style="text-align:center; padding-top:10px; color:#3BA944"> Instructors </h2>
-	    <div style="height:300px;overflow-y: auto">
-	      <div ng-repeat="instructor in section.instructors" style="margin:10px;">
-		<button class="btn" data-ng-click="removeInstructor(instructor._id)">&times;</button> {{ instructor.user_id }} {{ instructor.username }}
-	      </div>
-	      <br>
-	    </div>
-	    <button class="btn btn-success" ng-click="selectInstructors()" style="margin:10px">
-	      Add Instructor
-	    </button>
-	  </div>
-	</th>
-	<th style="width:33%">
-	  <div style="margin:5px; background-color: #fefefe; height:100%;">
-	    <h2 style="text-align:center; padding-top:10px; color:#3BA944"> Managers </h2>
-	    <div style="height:300px;overflow-y: auto">
-	      <div ng-repeat="manager in section.managers" style="margin:10px;">
-		<button class="btn" data-ng-click="removeManager(manager._id)">&times;</button> {{ manager.user_id }} {{ manager.username }}
-	      </div>
-	      <br>
-	    </div>
-	    <button class="btn btn-success" ng-click="selectManagers()" style="margin:10px">
-	      Add Manager
-	    </button>
-	  </div>
-	</th>
-      </table>
+    <h4>SECTION : {{ section.course_id }}{{ section.section_id }} - {{ section.course_name }}</h4>
+    <div class="row">
+      <div class="col-md-4">
+  	<div style="margin:5px; background-color: #fefefe; width: 100%">
+  	  <h4 style="text-align:center; padding-top:10px; color:#3BA944"> Students </h4>
+  	  <div style="height:500px; overflow-y: auto">
+  	    <div ng-repeat="student in section.students" style="margin:10px;">
+  	      <button class="btn" data-ng-click="removeStudent(student._id)" >&times;</button> {{ student.user_id }} {{ student.username }}
+  	    </div>
+  	    <br>
+  	  </div>
+  	  <button class="btn btn-success" ng-click="selectStudents()" style="display: block; width: 100%">
+  	    Add Student
+  	  </button>
+  	</div>
+      </div>
+      <div class="col-md-4">
+  	<div style="margin:5px; background-color: #fefefe; width: 100%">
+  	  <h4 style="text-align:center; padding-top:10px; color:#3BA944"> Instructors </h4>
+  	  <div style="height:500px; overflow-y: auto">
+  	    <div ng-repeat="instructor in section.instructors" style="margin:10px;">
+  	      <button class="btn" data-ng-click="removeInstructor(instructor._id)" >&times;</button> {{ instructor.user_id }} {{ instructor.username }}
+  	    </div>
+  	    <br>
+  	  </div>
+  	  <button class="btn btn-success" ng-click="selectInstructors()" style="display: block; width: 100%">
+  	    Add Instructor
+  	  </button>
+  	</div>
+      </div>
+      <div class="col-md-4">
+  	<div style="margin:5px; background-color: #fefefe; width: 100%">
+  	  <h4 style="text-align:center; padding-top:10px; color:#3BA944"> Managers </h4>
+  	  <div style="height:500px; overflow-y: auto">
+  	    <div ng-repeat="manager in section.managers" style="margin:10px;">
+  	      <button class="btn" data-ng-click="removeManager(manager._id)" >&times;</button> {{ manager.user_id }} {{ manager.username }}
+  	    </div>
+  	    <br>
+  	  </div>
+  	  <button class="btn btn-success" ng-click="selectManagers()" style="display: block; width: 100%">
+  	    Add Manager
+  	  </button>
+  	</div>
+      </div>
     </div>
   </div>
 </div>
