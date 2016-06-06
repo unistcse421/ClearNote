@@ -15,6 +15,7 @@ router.get('/', auth, function(req, res, next) {
     var query = User.findById(req.payload._id);
     query.exec(function(err, user) {
 	if (err) {return next(err);}
+	if (!user) {return next(err);}
 	Card
 	    .find({$or:[{'section': {'$in' : user.takes}}, {'section': {'$in' : user.teaches}}, {'section': {'$in' : user.manages}}]})
 	    .populate('creator')
