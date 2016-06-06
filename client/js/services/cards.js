@@ -30,7 +30,9 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
 	});
     };
     o.get = function(id) {
-	return $http.get('/cards/' + id).then(function(res) {
+	return $http.get('/cards/' + id, {
+	    headers: {Authorization: 'Bearer ' + auth.getToken()}
+	}).then(function(res) {
 	    return res.data;
 	});
     };
@@ -39,6 +41,10 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
 	    headers: {Authorization: 'Bearer ' + auth.getToken()}
 	});
     };
-
+    o.addMemo = function(id, memo) {
+	return $http.post('/cards/' + id + '/memos', memo, {
+	    headers: {Authorization: 'Bearer ' + auth.getToken()}
+	});
+    };
     return o;
 }]);

@@ -28,4 +28,18 @@
       <span style="font-size:15px; margin-left:10px;">{{comment.body}}</span>
     </div>
   </div>
+  <div class="col-md-2">
+    <div ng-app="ngAnimate" class="bg-grey" style="top: 60px; position: fixed; width: 256px;">
+      <div style="background-color: #373c4b; padding: 12px;">
+	<a style=" color: #ffffff;">MEMO</a>
+      </div>
+      <div ng-repeat="memo in card.memos" style="width: 250px; word-wrap:break-word; padding:10px; background-color: #ffffff; margin-top: 10px; margin-left: 3px; margin-right: 3px;">
+	{{ memo.body }}
+      </div>
+      <form ng-submit="addMemo()" style="margin-top:30px; padding-left: 10px; padding-right: 10px;">
+	<textarea class="form-control" placeholder="Memo..." ng-model="memoBody" size="25"></textarea></br>
+	<button type="submit" class="btn btn-default btn-md" style="width: 100%;">Add</button>
+      </form>
+    </div>
+  </div>
 </div>

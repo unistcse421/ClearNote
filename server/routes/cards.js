@@ -8,6 +8,7 @@ var Section = mongoose.model('Section');
 var Card = mongoose.model('Card');
 var Comment = mongoose.model('Comment');
 var Todo = mongoose.model('Todo');
+var Memo = mongoose.model('Memo');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -46,6 +47,20 @@ router.post('/:card/comments', auth, function(req, res, next) {
     });
 });
 
+router.post('/:card/memos', auth, function(req, res, next) {
+    var memo = new Memo(req.body);
+    memo.card = req.card;
+    memo.creator = req.payload._id;
+    memo.save(function(err, memo) {
+	if (err) {return next(err);}
+	req.card.memos.push(memo);
+	req.card.save(function(err, card) {
+	    if (err) {return next(err);}
+	    res.json(memo);
+	});
+    });
+});
+
 router.param('card', function(req, res, next, id) {
     var query = Card.findById(id);
     query.exec(function(err, card) {
@@ -56,10 +71,11 @@ router.param('card', function(req, res, next, id) {
     });
 });
 
-router.get('/:card', function(req, res) {
+router.get('/:card', auth, function(req, res) {
     req.card
 	.populate('creator')
 	.populate('section')
+	.populate('memos', null, {creator: req.payload._id})
 	.populate('comments', function(err, card) {
 	    if (err) { return next(err); }
 	    Comment.populate(card.comments, 'creator', function(err, comments) {
