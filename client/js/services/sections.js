@@ -48,5 +48,13 @@ angular.module('cleannote').factory('sections', ['$http', 'auth', function($http
     o.removeManager = function(section_id, id) {
 	return $http.get('/sections/' + section_id + '/managers/' + id + '/remove');
     };
+    o.getSelectedSection = function(sectionId) {
+	for (var i=0; i<o.sections.length; i++) {
+	    if (sectionId == o.sections[i]._id) {
+		return o.sections[i];
+	    }
+	}
+	return undefined;
+    };
     return o;
 }]);

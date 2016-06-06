@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 
 var gutil = require('gulp-util');
-var browserSync = require('browser-sync');
+// var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var livereload = require('gulp-livereload');
+var connect = require('gulp-connect');
 var config = require('./server/config/environment');
 
 var jshint = require('gulp-jshint');
@@ -58,16 +59,16 @@ gulp.task('copy-html-files', function () {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('browser-sync', function() {
-    browserSync.init(null, {
-	proxy: "http://localhost:" + config.port,
-	files: ["client/**/*.*"],
-	browser: "google-chrome",
-	port: 7000
-    });
-});
+// gulp.task('browser-sync', function() {
+//     browserSync.init(null, {
+// 	proxy: "http://localhost:" + config.port,
+// 	files: ["client/**/*.*"],
+// 	browser: "google chrome",
+// 	port: 7000
+//     });
+// });
 
-gulp.task('nodemon', ['browser-sync'], function(cb) {
+gulp.task('nodemon', function(cb) {
     livereload.listen();
     var started = false;
     return nodemon({
@@ -113,6 +114,13 @@ gulp.task('default', function() {
 		['connect']);
 
 });
+
+// gulp.task('serveprod', function() {
+//     connect.server({
+// 	port: process.env.PORT || 5000,
+// 	livereload: false
+//     });
+// });
 
 // gulp.task('build', function() {
 //   runSequence(

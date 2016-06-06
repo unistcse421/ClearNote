@@ -85,4 +85,11 @@ SectionSchema.methods.removeManager = function(managerId, cb) {
     this.save(cb);
 };
 
+SectionSchema.methods.hasEditAuth = function(userid) {
+    var cp = function(c) {
+	return c == userid;
+    };
+    return _.some(this.instructors, cp) || _.some(this.managers, cp);
+};
+
 mongoose.model('Section', SectionSchema);

@@ -1,4 +1,5 @@
 var express = require('express');
+var socketio = require('socket.io');
 var path = require('path');
 var http = require('http');
 var favicon = require('serve-favicon');
@@ -16,7 +17,20 @@ var models = require('require-all')({
 });
 
 require('./config/passport');
-mongoose.connect('mongodb://localhost/cleannote');
+// mongoose.connect('mongodb://localhost/cleannote');
+var uristring =
+    process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    process.env.MONGODB_URL ||
+    'mongodb://localhost/cleannote';
+mongoose.connect(uristring, function (err, res) {
+    if (err) {
+	console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+	console.log ('Succeeded connected to: ' + uristring);
+    }
+});
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -80,6 +94,23 @@ var server = http.createServer(app);
 function startServer() {
     server.listen(config.port, config.ip, function() {
 	console.log('Express server listening on %d', config.port);
+    });
+    var io = socketio.listen(server);
+    io.sockets.on('connection', function(socket) {
+	socket.on('join', function(data) {
+	    socket.join(data.roomname);
+	    socket.room = data.roomname;
+	    // socket.room function(err, room) {
+	    io.sockets.in(socket.room).emit('join', data.userid);
+	    // });
+	});
+	socket.on('message', function(message) {
+	    // socket.get('room', function(err, room) {
+	    // 	io.sockets.in(room).emit('message', message);
+	    // });
+	    io.sockets.in(socket.room).emit('message', message);
+	});
+	socket.on('disconnect', function() {});
     });
 }
 

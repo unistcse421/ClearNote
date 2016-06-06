@@ -1,6 +1,7 @@
 angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, auth) {
     var o = {
 	sectionId: '',
+	edit_auth: false,
 	cards: []
     };
     o.getAll = function(sectionId) {
@@ -9,14 +10,15 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
 	    return $http.get('/cards', {
 		headers: {Authorization: 'Bearer ' + auth.getToken()}
 	    }).success(function(data) {
-		console.log(data);
+		o.edit_auth = false;
 		angular.copy(data, o.cards);
 	    });
 	}
-	return $http.get('/sections/' + sectionId + '/cards', null, {
+	return $http.get('/sections/' + sectionId + '/cards', {
 	    headers: {Authorization: 'Bearer ' + auth.getToken()}
 	}).success(function(data) {
-	    angular.copy(data, o.cards);
+	    o.edit_auth = data.edit_auth;
+	    angular.copy(data.cards, o.cards);
 	});
     };
     o.create = function(card) {
@@ -37,5 +39,6 @@ angular.module('cleannote').factory('cards', ['$http', 'auth', function($http, a
 	    headers: {Authorization: 'Bearer ' + auth.getToken()}
 	});
     };
+
     return o;
 }]);

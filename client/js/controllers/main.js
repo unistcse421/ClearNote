@@ -8,6 +8,8 @@ angular.module('cleannote').controller('MainCtrl', [
 	$scope.sections = sections.sections;
 	$scope.cards = cards.cards;
 	$scope.todos = todos.todos;
+	$scope.selectedSection = sections.getSelectedSection(cards.sectionId);
+	$scope.edit_auth = cards.edit_auth;
 	$scope.showAddSectionModal = function() {
 	    var addSectionModalInstance = $uibModal.open({
 		templateUrl: './partials/addSectionModal.html',

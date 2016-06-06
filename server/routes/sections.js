@@ -84,19 +84,42 @@ router.post('/:section/cards', auth, function(req, res, next) {
 	req.section.cards.push(card);
 	req.section.save(function(err, section) {
 	    if (err) { return next(err); }
+	    if (card.card_type == 'assignment') {
+		console.log('add assignment card');
+		var addTodoToUser = function(err, todo) {
+		    if (err) { return next(err); }
+		    var query = User.findById(todo.creator);
+		    query.exec(function(err, user) {
+			if (err) { return next(err); }
+			user.todos.push(todo);
+			user.save(function(err) {
+			    if (err) { return next(err); }
+			});
+		    });
+		};
+		for (var i=0; i<section.students.length; i++) {
+		    var todo = new Todo({task: '[' + req.section.course_name + '] ' + card.title, creator: section.students[i]});
+		    todo.save(addTodoToUser);
+		}
+	    }
 	    res.json(card);
 	});
     });
 });
 
-router.get('/:section/cards', function(req, res, next) {
-    Card.find({'section': req.section._id})
-	.populate('creator')
-	.populate('section')
-	.sort('-pub_date')
-	.exec(function(err, cards) {
+router.get('/:section/cards', auth, function(req, res, next) {
+    Section.findById(req.section._id)
+	.exec(function(err, section) {
 	    if (err) {return next(err);}
-	    res.json(cards);
+	    var edit_auth = section.hasEditAuth(req.payload._id);
+	    Card.find({'section': section._id})
+		.populate('creator')
+		.populate('section', {cards: 0, students: 0, instructors: 0, managers: 0})
+		.sort('-pub_date')
+		.exec(function(err, cards) {
+		    if (err) {return next(err);}
+		    res.json({edit_auth: edit_auth, cards: cards});
+		});
 	});
 });
 

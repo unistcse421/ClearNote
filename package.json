@@ -2,8 +2,13 @@
   "name": "cleannote",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "5.0.0",
+    "npm": "3.3.6"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server/app.js",
+    "postinstall": "bower install && npm start"
   },
   "dependencies": {
     "angular": "^1.5.5",
@@ -27,12 +32,10 @@
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.3.0"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.12.5",
+    "serve-favicon": "~2.3.0",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
+    "gulp-connect": "^4.0.0",
     "gulp-docco": "0.0.4",
     "gulp-inject": "^4.0.0",
     "gulp-jshint": "^2.0.0",
@@ -45,6 +48,10 @@
     "main-bower-files": "^2.13.0",
     "require-all": "^2.0.0",
     "run-sequence": "^1.1.5",
+    "socket.io": "^1.4.6",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+
   }
 }
